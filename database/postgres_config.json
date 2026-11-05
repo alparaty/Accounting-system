@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "host": "localhost",
+  "port": 5432,
+  "dbname": "alparaty_erp",
+  "user": "postgres",
+  "password": "password",
+  "sync_interval_seconds": 10,
+  "batch_size": 50,
+  "auto_create_schema": true
+}

@@ -1,0 +1,4 @@
+2026/10/10-02:39:50.029 3c0c Reusing MANIFEST C:\Users\AlparatY\Desktop\system ERP\scratch\temp_profile_branch\Default\Local Storage\leveldb/MANIFEST-000001
+2026/10/10-02:39:50.033 3c0c Recovering log #3
+2026/10/10-02:39:50.033 3c0c (ignoring error) C:\Users\AlparatY\Desktop\system ERP\scratch\temp_profile_branch\Default\Local Storage\leveldb/000003.log: dropping 32731 bytes; Corruption: partial record without end(2)
+2026/10/10-02:39:50.047 3c0c Reusing old log C:\Users\AlparatY\Desktop\system ERP\scratch\temp_profile_branch\Default\Local Storage\leveldb/000003.log 

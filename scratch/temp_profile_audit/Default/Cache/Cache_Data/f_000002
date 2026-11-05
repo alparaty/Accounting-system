@@ -1,0 +1,1225 @@
+/* ==========================================================================
+   نظام أونكس برو ERP - التصميم المكتبي الأصلي فائق الوضوح (Onyx Pro Theme)
+   مطابق تماماً لبيئة محاضرات أونكس برو الرسمية (YemenSoft Onyx Pro)
+   ========================================================================== */
+
+:root {
+  /* Onyx Pro Enterprise Desktop Palette */
+  --onyx-blue-dark: #0f2b5c;
+  --onyx-blue-primary: #1a4480;
+  --onyx-blue-light: #2c6bb4;
+  --onyx-blue-active: #0d3269;
+  
+  --onyx-bg-window: #eef2f7;
+  --onyx-bg-panel: #ffffff;
+  --onyx-bg-toolbar: #f8fafc;
+  --onyx-bg-header: #0f2b5c;
+  --onyx-bg-table-head: #e2e8f0;
+  --onyx-bg-table-hover: #e0f2fe;
+  --onyx-bg-input: #ffffff;
+  --onyx-bg-input-focus: #fffdf0;
+  
+  --onyx-border-dark: #94a3b8;
+  --onyx-border-light: #cbd5e1;
+  --onyx-border-subtle: #e2e8f0;
+  
+  --onyx-text-main: #0f172a;
+  --onyx-text-muted: #475569;
+  --onyx-text-light: #ffffff;
+  
+  --onyx-success: #15803d;
+  --onyx-warning: #b45309;
+  --onyx-danger: #b91c1c;
+  --onyx-info: #0369a1;
+
+  /* خط النظام القياسي فائق السرعة وبأرقام إنجليزية أصلية بدون تأخير تحميل */
+  --font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  -moz-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--onyx-bg-window);
+  color: var(--onyx-text-main);
+  direction: rtl;
+  text-align: right;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 13px;
+  user-select: none;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* ضمان ظهور الأرقام الإنجليزية في كافة الحقول والنوافذ والجداول */
+input,
+select,
+option,
+textarea,
+.num-cell,
+.excel-cell,
+.onyx-input,
+.onyx-select,
+.excel-formula-input,
+.kbd,
+.status-segment,
+.onyx-badge-count,
+.onyx-pill,
+.onyx-balance-bar,
+.onyx-tree-header,
+.onyx-menu-item,
+.onyx-modal-window,
+.onyx-titlebar,
+table td,
+table th {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  -moz-font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+}
+
+input[type="number"],
+input[type="date"],
+.date-cell,
+.date-input,
+.num-cell,
+.excel-cell.num-cell {
+  direction: ltr !important;
+  text-align: left !important;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  unicode-bidi: isolate !important;
+}
+
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+}
+
+td.date-cell {
+  text-align: center !important;
+}
+
+
+
+/* ==========================================================================
+   Desktop Application Shell
+   ========================================================================== */
+.onyx-app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--onyx-bg-window);
+}
+
+/* 1. Main System Title Bar (شريط العنوان التنفيذي) */
+.onyx-titlebar {
+  height: 34px;
+  background: linear-gradient(90deg, #0b1f44 0%, #15386f 50%, #1f4f9c 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-bottom: 2px solid #3b82f6;
+  flex-shrink: 0;
+}
+
+.onyx-title-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.2px;
+}
+
+.onyx-system-badge {
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.onyx-title-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 11.5px;
+  color: #cbd5e1;
+}
+
+.onyx-title-info-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.onyx-title-info-item strong {
+  color: #ffffff;
+}
+
+/* 2. Menu Bar (شريط القوائم والأنظمة الرئيسي - واضح وبارز جداً) */
+.onyx-menubar {
+  min-height: 38px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+  border-bottom: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  padding: 3px 8px;
+  gap: 6px;
+  flex-shrink: 0;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.onyx-menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.onyx-menu-item .menu-icon {
+  font-size: 14px;
+}
+
+.onyx-menu-item:hover {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #93c5fd;
+  transform: translateY(-1px);
+}
+
+.onyx-menu-item.active {
+  background: linear-gradient(180deg, #1a4480 0%, #0f2b5c 100%);
+  color: #ffffff;
+  border-color: #0f2b5c;
+  box-shadow: 0 2px 4px rgba(15, 43, 92, 0.25);
+}
+
+.onyx-menu-item.active .menu-icon {
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
+}
+
+/* 3. Iconic Action Toolbar (شريط أدوات أونكس برو القياسي باختصارات F) */
+.onyx-toolbar {
+  height: 44px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+  border-bottom: 1px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.onyx-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.onyx-btn-tool {
+  height: 34px;
+  padding: 0 9px;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.onyx-btn-tool:hover {
+  background: linear-gradient(180deg, #eff6ff 0%, #bfdbfe 100%);
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+.onyx-btn-tool:active {
+  background: #bfdbfe;
+  transform: translateY(1px);
+}
+
+.onyx-btn-tool .kbd {
+  font-size: 9.5px;
+  font-family: monospace;
+  background: #0f2b5c;
+  color: #ffffff;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.onyx-btn-tool.btn-save {
+  border-color: #16a34a;
+  color: #166534;
+}
+.onyx-btn-tool.btn-save .kbd {
+  background: #16a34a;
+}
+
+.onyx-btn-tool.btn-del {
+  border-color: #dc2626;
+  color: #991b1b;
+}
+.onyx-btn-tool.btn-del .kbd {
+  background: #dc2626;
+}
+
+.onyx-toolbar-sep {
+  width: 1px;
+  height: 26px;
+  background-color: #cbd5e1;
+  margin: 0 4px;
+}
+
+.onyx-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.onyx-btn-nav {
+  width: 28px;
+  height: 30px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e293b;
+}
+
+.onyx-btn-nav:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+/* ==========================================================================
+   Main Content Layout (Sidebar Tree + Form Workspace)
+   ========================================================================== */
+.onyx-body-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+/* Left Sidebar - Onyx Navigation Explorer */
+.onyx-tree-sidebar {
+  width: 250px;
+  background-color: #f8fafc;
+  border-left: 1px solid #94a3b8;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.onyx-sidebar-header {
+  padding: 7px 10px;
+  background: #e2e8f0;
+  border-bottom: 1px solid #cbd5e1;
+  font-weight: 800;
+  font-size: 12px;
+  color: #0f2b5c;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.onyx-tree-group {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.onyx-tree-header {
+  padding: 8px 10px;
+  background-color: #f1f5f9;
+  font-weight: 700;
+  font-size: 12px;
+  color: #1e3a8a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.15s;
+}
+
+.onyx-tree-header:hover {
+  background-color: #e2e8f0;
+}
+
+.onyx-tree-list {
+  padding: 4px 0;
+  background-color: #ffffff;
+}
+
+.onyx-tree-item {
+  padding: 6px 14px 6px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.12s;
+  border-right: 3px solid transparent;
+}
+
+.onyx-tree-item:hover {
+  background-color: #f0fdf4;
+  color: #166534;
+}
+
+.onyx-tree-item.active {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 700;
+  border-right-color: #2563eb;
+}
+
+.onyx-badge-count {
+  margin-right: auto;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Main Workspace Canvas */
+.onyx-workspace-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #f1f5f9;
+  padding: 10px 14px;
+}
+
+/* ==========================================================================
+   Screen Header & Groupbox Styling (طراز شاشات أونكس الرسمية)
+   ========================================================================== */
+.onyx-screen-header-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-top: 3px solid #1a4480;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.screen-title-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.screen-icon-box {
+  width: 32px;
+  height: 32px;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.screen-main-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f2b5c;
+}
+
+.screen-sub-title {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.screen-meta-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.onyx-pill {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.onyx-pill.pill-posted {
+  background-color: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+.onyx-pill.pill-draft {
+  background-color: #fef3c7;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.onyx-pill.pill-branch {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+/* Groupbox Container */
+.onyx-groupbox {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.onyx-groupbox-legend {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1a4480;
+  padding: 0 8px;
+  background-color: #ffffff;
+  display: inline-block;
+  margin-top: -22px;
+  margin-bottom: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Forms and Inputs */
+.onyx-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.onyx-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.onyx-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.onyx-label .req {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.onyx-input, .onyx-select {
+  height: 28px;
+  background-color: var(--onyx-bg-input);
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  padding: 0 6px;
+  font-size: 12px;
+  color: #0f172a;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.1s ease;
+}
+
+.onyx-input:focus, .onyx-select:focus {
+  outline: none;
+  background-color: var(--onyx-bg-input-focus);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.onyx-input[readonly], .onyx-input:disabled {
+  background-color: #f1f5f9;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.input-with-lookup {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.onyx-btn-lookup {
+  height: 28px;
+  width: 28px;
+  background: #e2e8f0;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #1e3a8a;
+}
+
+.onyx-btn-lookup:hover {
+  background-color: #bfdbfe;
+  border-color: #2563eb;
+}
+
+/* ==========================================================================
+   Data Grids (جداول أونكس برو الشبكية عالية الوضوح)
+   ========================================================================== */
+.onyx-grid-container {
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  background-color: #ffffff;
+  overflow: auto;
+  max-height: 480px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.onyx-grid {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+  font-size: 12px;
+}
+
+.onyx-grid thead th {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 2px solid #94a3b8;
+  border-left: 1px solid #cbd5e1;
+  color: #0f2b5c;
+  font-weight: 800;
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+
+.onyx-grid tbody td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #e2e8f0;
+  border-left: 1px solid #f1f5f9;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.onyx-grid tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.onyx-grid tbody tr:hover {
+  background-color: #e0f2fe;
+}
+
+.onyx-grid tfoot td {
+  background: #f1f5f9;
+  border-top: 2px solid #94a3b8;
+  padding: 6px 8px;
+  font-weight: 800;
+  color: #0f2b5c;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.num-cell {
+  font-family: 'Segoe UI', Tahoma, Consolas, monospace;
+  font-weight: 700;
+  text-align: left;
+  direction: ltr;
+  unicode-bidi: plaintext;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* Realtime Balance Validator Banner */
+.onyx-balance-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.onyx-balance-bar.balanced {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.onyx-balance-bar.unbalanced {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* ==========================================================================
+   Tabs inside Screens
+   ========================================================================== */
+.onyx-tabs-strip {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-bottom: 2px solid #1a4480;
+  margin-bottom: 10px;
+}
+
+.onyx-tab-btn {
+  padding: 5px 14px;
+  background-color: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.onyx-tab-btn:hover {
+  background-color: #cbd5e1;
+  color: #0f2b5c;
+}
+
+.onyx-tab-btn.active {
+  background-color: #1a4480;
+  color: #ffffff;
+  border-color: #1a4480;
+}
+
+/* ==========================================================================
+   Modals & Popups (Lookup Dialog F9 & Messages)
+   ========================================================================== */
+.onyx-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.onyx-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.onyx-modal-window {
+  background-color: #ffffff;
+  border: 2px solid #0f2b5c;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  width: 90%;
+  max-width: 760px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.onyx-modal-title {
+  height: 32px;
+  background: linear-gradient(90deg, #0f2b5c 0%, #1e40af 100%);
+  color: #fff;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 12.5px;
+}
+
+.onyx-modal-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.onyx-modal-body {
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.onyx-modal-footer {
+  padding: 8px 12px;
+  background-color: #f1f5f9;
+  border-top: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Bottom Persistent Statusbar
+   ========================================================================== */
+.onyx-statusbar {
+  height: 24px;
+  background-color: #e2e8f0;
+  border-top: 1px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #334155;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.onyx-statusbar-left, .onyx-statusbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-segment {
+  border-left: 1px solid #cbd5e1;
+  padding-left: 10px;
+}
+
+/* Toast Messages */
+.onyx-toast-area {
+  position: fixed;
+  bottom: 30px;
+  left: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.onyx-toast {
+  pointer-events: auto;
+  padding: 8px 14px;
+  background-color: #0f2b5c;
+  color: #ffffff;
+  border: 1px solid #3b82f6;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideToast 0.2s ease forwards;
+}
+
+@keyframes slideToast {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   Excel-like Spreadsheet System (نظام جداول إكسل التفاعلية المدمجة)
+   ========================================================================== */
+.excel-app-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 150px);
+  background-color: #ffffff;
+  border: 1px solid #107c41;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Excel Ribbon Toolbar */
+.excel-ribbon-bar {
+  background: #f3f4f6;
+  border-bottom: 1px solid #d1d5db;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.excel-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.excel-tool-btn {
+  height: 30px;
+  padding: 0 10px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.12s ease;
+}
+
+.excel-tool-btn:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.excel-tool-btn.btn-excel-green {
+  background-color: #107c41;
+  color: #ffffff;
+  border-color: #0b5c30;
+}
+.excel-tool-btn.btn-excel-green:hover {
+  background-color: #0b5c30;
+}
+
+/* Excel Formula Bar (شريط الدالات fx) */
+.excel-formula-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.excel-cell-name {
+  width: 55px;
+  height: 24px;
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-weight: 800;
+  font-size: 11.5px;
+  color: #107c41;
+}
+
+.excel-fx-icon {
+  font-weight: 900;
+  font-style: italic;
+  color: #6b7280;
+  font-size: 13px;
+  user-select: none;
+  padding: 0 4px;
+}
+
+.excel-formula-input {
+  flex: 1;
+  height: 24px;
+  border: 1px solid transparent;
+  padding: 0 8px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  color: #111827;
+}
+
+.excel-formula-input:focus {
+  outline: none;
+  border-color: #107c41;
+  background-color: #f0fdf4;
+}
+
+/* Excel Spreadsheet Grid */
+.excel-grid-scroll {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.excel-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 950px;
+  font-size: 12px;
+  user-select: text;
+}
+
+.excel-table th {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  font-weight: 700;
+  padding: 4px 6px;
+  height: 26px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  user-select: none;
+}
+
+.excel-table td.row-num-header {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  font-weight: 700;
+  text-align: center;
+  width: 45px;
+  user-select: none;
+  font-family: monospace;
+  position: sticky;
+  right: 0;
+  z-index: 5;
+}
+
+.excel-table td.excel-cell {
+  border: 1px solid #e5e7eb;
+  padding: 5px 8px;
+  color: #1f2937;
+  font-weight: 600;
+  outline: none;
+  cursor: cell;
+  white-space: nowrap;
+}
+
+.excel-table td.excel-cell:hover {
+  background-color: #f0fdf4;
+}
+
+.excel-table td.excel-cell.selected {
+  border: 2px solid #107c41 !important;
+  background-color: #ecfdf5 !important;
+  position: relative;
+}
+
+.excel-table td.excel-cell.selected::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  width: 6px;
+  height: 6px;
+  background-color: #107c41;
+  cursor: crosshair;
+}
+
+.excel-table tr.total-row td {
+  background-color: #f8fafc;
+  font-weight: 800;
+  border-top: 2px solid #107c41;
+  border-bottom: 2px solid #107c41;
+  color: #064e3b;
+}
+
+/* Excel Bottom Sheet Tabs Bar */
+.excel-bottom-bar {
+  height: 32px;
+  background: #f3f4f6;
+  border-top: 1px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+.excel-sheet-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.excel-tab-pill {
+  padding: 4px 12px;
+  background: #e5e7eb;
+  border: 1px solid #d1d5db;
+  border-bottom: none;
+  font-weight: 700;
+  color: #4b5563;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.12s;
+}
+
+.excel-tab-pill.active {
+  background: #ffffff;
+  color: #107c41;
+  border-top: 2px solid #107c41;
+}
+
+.excel-status-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* Excel KPI Summary Row */
+.excel-kpi-summary-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.excel-kpi-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 6px 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-right: 3px solid #107c41;
+}
+
+.excel-kpi-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: #f0fdf4;
+  color: #107c41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  border: 1px solid #bbf7d0;
+}
+
+.excel-kpi-label {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.excel-kpi-value {
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #0f2b5c;
+  line-height: 1.1;
+}
+
+/* ==========================================================================
+   Print Styles (طباعة التقارير بنسق أونكس المعتمد)
+   ========================================================================== */
+@media print {
+  body {
+    background: #fff !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .onyx-titlebar, .onyx-menubar, .onyx-toolbar, .onyx-tree-sidebar, .onyx-statusbar, .onyx-btn-tool, .onyx-btn-lookup {
+    display: none !important;
+  }
+  .onyx-app-wrapper, .onyx-body-layout, .onyx-workspace-area {
+    display: block !important;
+    background: #fff !important;
+    padding: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .onyx-grid {
+    border: 1px solid #000 !important;
+  }
+  .onyx-grid th, .onyx-grid td {
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+  .print-header {
+    display: block !important;
+    text-align: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+}
+.print-header {
+  display: none;
+}

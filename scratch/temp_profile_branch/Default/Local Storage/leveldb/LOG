@@ -1,0 +1,6 @@
+2026/10/10-16:58:57.783 3ab8 Reusing MANIFEST C:\Users\AlparatY\Desktop\system ERP\scratch\temp_profile_branch\Default\Local Storage\leveldb/MANIFEST-000001
+2026/10/10-16:58:57.789 3ab8 Recovering log #3
+2026/10/10-16:58:57.791 3ab8 (ignoring error) C:\Users\AlparatY\Desktop\system ERP\scratch\temp_profile_branch\Default\Local Storage\leveldb/000003.log: dropping 32731 bytes; Corruption: partial record without end(2)
+2026/10/10-16:58:57.791 3ab8 Level-0 table #3: started
+2026/10/10-16:58:57.992 3ab8 Level-0 table #3: 20499 bytes OK
+2026/10/10-16:58:58.005 3ab8 Delete type=0 #3

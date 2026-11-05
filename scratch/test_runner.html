@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>ERP Automated Test Suite</title>
+</head>
+<body>
+  <!-- Container for App -->
+  <div id="onyx-screen-title"></div>
+  <div id="onyx-screen-sub"></div>
+  <div id="tree-pending-count"></div>
+  <div id="onyx-toast-area"></div>
+  <div id="onyx-workspace"></div>
+  <div id="onyx-modal-area"></div>
+  <div id="test-results" style="white-space:pre; font-family:monospace;"></div>
+
+  <script src="../js/onyx_data.js"></script>
+  <script src="../js/onyx_store.js"></script>
+  <script src="../js/onyx_app.js"></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const results = {
+        screens: {},
+        advancedMethods: {},
+        f6Modals: {},
+        errors: []
+      };
+
+      window.onerror = function(msg, url, line) {
+        results.errors.push({ msg, url, line });
+      };
+
+      try {
+        const screens = [
+          'dashboard', 'chart_of_accounts', 'opening_balances', 'journal_entries',
+          'vouchers_cash', 'vouchers_cheque', 'cheque_collection', 'payroll',
+          'org_hierarchy_excel', 'purchases_lc', 'sales', 'inventory',
+          'review_posting', 'reports', 'system_config', 'security_users',
+          'fixed_assets', 'pos', 'expenses'
+        ];
+
+        // 1. Test rendering all screens
+        screens.forEach(sc => {
+          try {
+            window.onyxApp.openScreen(sc);
+            const ws = document.getElementById('onyx-workspace');
+            results.screens[sc] = {
+              status: 'OK',
+              htmlLen: ws ? ws.innerHTML.length : 0
+            };
+          } catch(e) {
+            results.screens[sc] = { status: 'ERROR', error: e.message };
+          }
+        });
+
+        // 2. Test F6 on all screens
+        screens.forEach(sc => {
+          try {
+            window.onyxApp.openScreen(sc);
+            window.onyxApp.handleF6();
+            const modal = document.getElementById('onyx-modal-area');
+            const hasModal = modal && modal.innerHTML.length > 20 && modal.style.display !== 'none';
+            if (window.onyxApp.closeModal) window.onyxApp.closeModal();
+            results.f6Modals[sc] = { status: 'OK', hasModal: hasModal };
+          } catch(e) {
+            results.f6Modals[sc] = { status: 'ERROR', error: e.message };
+          }
+        });
+
+        // 3. Test advanced methods
+        const methodsToTest = [
+          { name: 'switchPurchasesTab_lc', fn: () => { window.onyxApp.openScreen('purchases_lc'); window.onyxApp.switchPurchasesTab('lc'); } },
+          { name: 'switchPurchasesTab_invoices', fn: () => { window.onyxApp.switchPurchasesTab('invoices'); } },
+          { name: 'review_filters', fn: () => { window.onyxApp.openScreen('review_posting'); window.onyxApp.setReviewFilter('SALES'); window.onyxApp.setReviewFilter('ALL'); } },
+          { name: 'post_all_reviewed', fn: () => { window.onyxApp.postAllReviewed(); } },
+          { name: 'reports_tabs', fn: () => { 
+              window.onyxApp.openScreen('reports'); 
+              window.onyxApp.switchReportsTab('balance_sheet'); 
+              window.onyxApp.switchReportsTab('income'); 
+              window.onyxApp.switchReportsTab('account_statement'); 
+              window.onyxApp.switchReportsTab('trial'); 
+            } 
+          },
+          { name: 'inventory_modals', fn: () => { 
+              window.onyxApp.openScreen('inventory'); 
+              window.onyxApp.openAddItemModal(); 
+              window.onyxApp.closeModal(); 
+              window.onyxApp.openStockTransferModal(); 
+              window.onyxApp.closeModal(); 
+              window.onyxApp.openStockReconciliationModal(); 
+              window.onyxApp.closeModal(); 
+            } 
+          },
+          { name: 'backup_restore_modals', fn: () => { 
+              window.onyxApp.openImportSystemBackupModal(); 
+              window.onyxApp.closeModal(); 
+            } 
+          }
+        ];
+
+        methodsToTest.forEach(m => {
+          try {
+            m.fn();
+            results.advancedMethods[m.name] = 'PASS';
+          } catch(e) {
+            results.advancedMethods[m.name] = 'FAIL: ' + e.message;
+          }
+        });
+
+      } catch(outerErr) {
+        results.fatalError = outerErr.message;
+      }
+
+      document.getElementById('test-results').textContent = "---JSON_RESULTS_START---\n" + JSON.stringify(results, null, 2) + "\n---JSON_RESULTS_END---";
+    });
+  </script>
+</body>
+</html>

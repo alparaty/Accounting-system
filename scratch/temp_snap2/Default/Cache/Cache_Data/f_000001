@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" style="background-color:#eef2f7;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البرطي المالي الشامل | Al-ParatY Financial Enterprise</title>
+
+  <style>
+    /* لون خلفية نافذة البرنامج الأصلي المتناسق مع أونكس برو لمنع الشاشة الزرقاء أو البيضاء */
+    html,
+    body {
+      background-color: #eef2f7 !important;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <!-- CSS Stylesheet - Classic Onyx Pro Ultra-Clear Theme -->
+  <link rel="stylesheet" href="css/onyx_style.css?v=20261011_v11">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+</head>
+
+<body style="background-color:#eef2f7;">
+
+  <!-- 1. حاوية المركز الرئيسي (واجهة أونكس برو الكلاسيكية الحالية) -->
+  <div id="enterprise-app-container" class="onyx-app-wrapper">
+
+    <!-- 1. Onyx Titlebar (شريط عنوان النظام) -->
+    <header class="onyx-titlebar">
+      <div class="onyx-title-left">
+        <span class="onyx-system-badge">AL-PARATY</span>
+        <span>البرطي المالي الشامل | Al-ParatY Financial Enterprise</span>
+      </div>
+      <div class="onyx-title-right">
+        <div class="onyx-title-info-item" style="display:flex; align-items:center; gap:6px;">
+          <button id="btn-show-login-modal" class="onyx-btn" onclick="window.onyxApp.showLoginModal()" style="background:#0f2b5c; color:#93c5fd; border:1px solid #1e3a8a; font-size:11px; padding:2px 8px; border-radius:3px; cursor:pointer; font-weight:bold; display:flex; align-items:center; gap:4px;">🔑 شاشة تسجيل الدخول</button>
+          <button id="btn-toggle-ui-mode" class="onyx-btn" onclick="window.onyxApp.toggleInterfaceMode()" style="background:#0284c7; color:#fff; border:1px solid #38bdf8; font-size:11px; padding:2px 8px; border-radius:3px; cursor:pointer; font-weight:bold;">🏪 واجهات الفروع والمعارض</button>
+        </div>
+        <div class="onyx-title-info-item">
+          <span>الفرع:</span>
+          <strong id="titlebar-branch-display">01 - المركز الرئيسي (صنعاء)</strong>
+        </div>
+        <div class="onyx-title-info-item">
+          <span>السنة المالية:</span>
+          <strong>2026</strong>
+        </div>
+        <div class="onyx-title-info-item">
+          <span>المستخدم:</span>
+          <strong id="titlebar-user-display">1 - المدير المالي (أحمدسليم البرطي)</strong>
+        </div>
+        <div class="onyx-title-info-item">
+          <span>العملة:</span>
+          <strong>ريال يمني (YER)</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Onyx Menubar (شريط القوائم والأنظمة التنفيذي - واضح ومميز بالأيقونات لجميع متطلبات النظام) -->
+    <nav class="onyx-menubar" id="top-nav-bar">
+      <div class="onyx-menu-item active" data-screen="dashboard" onclick="window.onyxApp.openScreen('dashboard')">
+        <span class="menu-icon">📊</span>
+        <span>الرئيسية</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="system_config" onclick="window.onyxApp.openScreen('system_config')">
+        <span class="menu-icon">⚙️</span>
+        <span>تهيئة النظام</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="security_users" onclick="window.onyxApp.openScreen('security_users')">
+        <span class="menu-icon">🔒</span>
+        <span>المستخدمون والصلاحيات</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="chart_of_accounts"
+        onclick="window.onyxApp.openScreen('chart_of_accounts')">
+        <span class="menu-icon">🌳</span>
+        <span>الدليل المحاسبي</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="opening_balances"
+        onclick="window.onyxApp.openScreen('opening_balances')">
+        <span class="menu-icon">⚖️</span>
+        <span>الأرصدة الافتتاحية</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="journal_entries" onclick="window.onyxApp.openScreen('journal_entries')">
+        <span class="menu-icon">📓</span>
+        <span>القيود اليومية</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="vouchers_cash" onclick="window.onyxApp.openScreen('vouchers_cash')">
+        <span class="menu-icon">💵</span>
+        <span>سندات الصرف والقبض</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="vouchers_cheque" onclick="window.onyxApp.openScreen('vouchers_cheque')">
+        <span class="menu-icon">🏦</span>
+        <span>الشيكات والبنك الوسيط</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="expenses" onclick="window.onyxApp.openScreen('expenses')">
+        <span class="menu-icon">💸</span>
+        <span>المصروفات والنثريات</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="fixed_assets" onclick="window.onyxApp.openScreen('fixed_assets')">
+        <span class="menu-icon">🏢</span>
+        <span>الأصول الثابتة</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="payroll" onclick="window.onyxApp.openScreen('payroll')">
+        <span class="menu-icon">👥</span>
+        <span>المرتبات والأجور</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="org_hierarchy_excel"
+        onclick="window.onyxApp.openScreen('org_hierarchy_excel')">
+        <span class="menu-icon">📊</span>
+        <span>جدول إكسل الهيكل</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="purchases_lc" onclick="window.onyxApp.openScreen('purchases_lc')">
+        <span class="menu-icon">🛒</span>
+        <span>المشتريات والاعتمادات</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="sales" onclick="window.onyxApp.openScreen('sales')">
+        <span class="menu-icon">🏷️</span>
+        <span>المبيعات والعملاء (إكسل)</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="pos" onclick="window.onyxApp.openScreen('pos')">
+        <span class="menu-icon">🖥️</span>
+        <span>نقطة البيع (POS)</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="inventory" onclick="window.onyxApp.openScreen('inventory')">
+        <span class="menu-icon">📦</span>
+        <span>المخازن والمستودعات</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="review_posting" onclick="window.onyxApp.openScreen('review_posting')">
+        <span class="menu-icon">🛡️</span>
+        <span>المراجعة والترحيل</span>
+      </div>
+      <div class="onyx-menu-item" data-screen="reports" onclick="window.onyxApp.openScreen('reports')">
+        <span class="menu-icon">📈</span>
+        <span>التقارير الختامية</span>
+      </div>
+    </nav>
+
+    <!-- 3. Iconic Action Toolbar (شريط أدوات أونكس برو الشهير) -->
+    <div class="onyx-toolbar">
+      <div class="onyx-toolbar-group">
+        <button class="onyx-btn-tool" onclick="window.onyxApp.handleF6()" title="إضافة سجل جديد [F6]">
+          <span>➕</span>
+          <span>إضافة</span>
+          <span class="kbd">F6</span>
+        </button>
+
+        <button class="onyx-btn-tool btn-save" onclick="window.onyxApp.handleF10()" title="حفظ البيانات [F10]">
+          <span>💾</span>
+          <span>حفظ</span>
+          <span class="kbd">F10</span>
+        </button>
+
+        <button class="onyx-btn-tool" onclick="location.reload()" title="تحديث وعرض البيانات [F5]">
+          <span>🔄</span>
+          <span>عرض</span>
+          <span class="kbd">F5</span>
+        </button>
+
+        <button class="onyx-btn-tool" onclick="window.onyxApp.handleF7()" title="بحث واستعلام [F7 / F8]">
+          <span>🔍</span>
+          <span>بحث</span>
+          <span class="kbd">F7</span>
+        </button>
+
+        <button class="onyx-btn-tool" onclick="window.print()" title="طباعة المستند أو التقرير [Shift+F8]">
+          <span>🖨️</span>
+          <span>طباعة</span>
+          <span class="kbd">Shift+F8</span>
+        </button>
+
+        <button class="onyx-btn-tool btn-del" onclick="window.onyxApp.handleShiftF6()" title="حذف السجل [Shift+F6]">
+          <span>❌</span>
+          <span>حذف</span>
+          <span class="kbd">Shift+F6</span>
+        </button>
+
+        <div class="onyx-toolbar-sep"></div>
+
+        <!-- أسهم التنقل بين السجلات -->
+        <div class="onyx-nav-arrows">
+          <button class="onyx-btn-nav" onclick="window.onyxApp.navigateRecords('first')" title="أول سجل">|◀</button>
+          <button class="onyx-btn-nav" onclick="window.onyxApp.navigateRecords('prev')" title="السجل السابق">◀</button>
+          <button class="onyx-btn-nav" onclick="window.onyxApp.navigateRecords('next')" title="السجل التالي">▶</button>
+          <button class="onyx-btn-nav" onclick="window.onyxApp.navigateRecords('last')" title="آخر سجل">▶|</button>
+        </div>
+      </div>
+
+      <div class="onyx-toolbar-group">
+        <button class="onyx-btn-tool" style="background:#eff6ff; border-color:#93c5fd; color:#1e40af;"
+          onclick="window.onyxApp.exportSystemBackup()" title="تصدير نسخة احتياطية كاملة للبيانات (.json)">
+          <span>💾</span>
+          <span>نسخ احتياطي</span>
+        </button>
+
+        <button class="onyx-btn-tool" style="background:#f0fdf4; border-color:#86efac; color:#15803d;"
+          onclick="window.onyxApp.openImportSystemBackupModal()" title="استعادة نسخة احتياطية من ملف (.json)">
+          <span>📥</span>
+          <span>استعادة نسخة</span>
+        </button>
+
+        <button class="onyx-btn-tool" style="background:#fef3c7; border-color:#fde047; color:#854d0e;"
+          onclick="window.onyxApp.resetDatabase()" title="تصفير البيانات والبدء على بياض">
+          <span>🧹</span>
+          <span>تصفير النظام</span>
+        </button>
+
+        <button class="onyx-btn-tool" style="background:#fee2e2; border-color:#fca5a5; color:#991b1b;"
+          onclick="window.close()" title="خروج من النظام [Alt+F4]">
+          <span>🚪</span>
+          <span>خروج</span>
+          <span class="kbd">Alt+F4</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. Body Layout (Navigation Tree Sidebar + Form Workspace) -->
+    <div class="onyx-body-layout">
+
+      <!-- شجرة مستكشف أونكس برو الجانبية - كامل الوحدات الوظيفية 1 إلى 12 -->
+      <aside class="onyx-tree-sidebar">
+        <div class="onyx-sidebar-header">
+          <span>🗂️</span>
+          <span>شاشات البرطي المالي الشامل (Al-ParatY)</span>
+        </div>
+
+        <!-- 1. تهيئة النظام -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>⚙️ 1. تهيئة النظام</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="system_config">
+              <span>▪</span> <span>فترات النظام والعملات (FR-2.1)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. الصلاحيات والأمان -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>🔒 2. الصلاحيات والأمان</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="security_users">
+              <span>▪</span> <span>المستخدمون والصلاحيات (FR-2.5)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. نظام الأستاذ العام -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>📓 3. نظام الأستاذ العام</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="chart_of_accounts">
+              <span>▪</span> <span>الدليل المحاسبي (COA)</span>
+            </div>
+            <div class="onyx-tree-item" data-screen="opening_balances">
+              <span>▪</span> <span>الأرصدة الافتتاحية (ص 14)</span>
+            </div>
+            <div class="onyx-tree-item" data-screen="journal_entries">
+              <span>▪</span> <span>القيود اليومية العامة (ص 15)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. الصناديق والبنوك والشيكات -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>💳 4. الصناديق والبنوك والشيكات</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="vouchers_cash">
+              <span>▪</span> <span>سندات الصرف والقبض (نقداً)</span>
+            </div>
+            <div class="onyx-tree-item" data-screen="vouchers_cheque">
+              <span>▪</span> <span>سندات الشيكات والبنك الوسيط</span>
+            </div>
+            <div class="onyx-tree-item" data-screen="cheque_collection">
+              <span>▪</span> <span>التحصيل اليدوي للشيكات (ص 23)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.1 نظام المصروفات والنثريات -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>💸 5. نظام المصروفات والنثريات</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="expenses">
+              <span>▪</span> <span>إدارة وقيد المصروفات (FR-Expenses)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. نظام الأصول الثابتة -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>🏢 5. نظام الأصول الثابتة</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="fixed_assets">
+              <span>▪</span> <span>كروت الأصول وإهلاكها (FR-8)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. نظام المرتبات والأجور -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>👥 6. المرتبات والأجور (HR)</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="payroll">
+              <span>▪</span> <span>مسيرات الرواتب والغياب (ص 27)</span>
+            </div>
+            <div class="onyx-tree-item" data-screen="org_hierarchy_excel">
+              <span>▪</span> <span>الهيكل الإداري وجدول إكسل (ص 29)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. نظام إدارة المشتريات -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>🛒 7. المشتريات والاعتمادات</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="purchases_lc">
+              <span>▪</span> <span>فواتير المشتريات والاعتمادات CF</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. نظام إدارة المبيعات -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>🏷️ 8. المبيعات ونقاط البيع</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="sales">
+              <span>▪</span> <span>فواتير المبيعات وجدول إكسل (FR-6)</span>
+            </div>
+            <div class="onyx-tree-item" onclick="window.onyxApp.openInvoiceProfilesManagerModal()">
+              <span>▪</span> <span>محرك أنماط الفواتير (Invoice Profiles)</span>
+            </div>
+            <div class="onyx-tree-item" data-screen="pos">
+              <span>▪</span> <span>نقطة البيع السريعة (POS الكاشير)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. نظام إدارة المخازن -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>📦 9. المخازن وجرد الأصناف</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="inventory">
+              <span>▪</span> <span>أرصدة المخازن وفروقات الجرد</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. نظام المراجعة والترحيل -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>🛡️ 10. المراجعة والترحيل</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="review_posting">
+              <span>▪</span> <span>مركز المراجعة والترحيل (FR-8.1)</span>
+              <span class="onyx-badge-count" id="tree-pending-count" style="display:none;">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. التقارير المالية والختامية -->
+        <div class="onyx-tree-group">
+          <div class="onyx-tree-header">
+            <span>📊 11. التقارير الختامية</span>
+          </div>
+          <div class="onyx-tree-list">
+            <div class="onyx-tree-item" data-screen="reports">
+              <span>▪</span> <span>ميزان المراجعة والميزانية (FR-9)</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- مساحة العمل الرئيسية للشاشات (Workspace Canvas) -->
+      <main class="onyx-workspace-area">
+        <!-- شريط تعريف الشاشة النشطة -->
+        <div style="display:none;">
+          <span id="onyx-screen-title"></span>
+          <span id="onyx-screen-sub"></span>
+        </div>
+
+        <!-- مكان تحميل الشاشات ديناميكياً بواسطة onyx_app.js (مع عرض فوري للرئيسية لمنع أي شاشة زرقاء أو تأخير) -->
+        <div id="onyx-workspace">
+          <!-- بطاقة رأس المال المستخرج من الأرصدة الافتتاحية -->
+          <div class="onyx-groupbox">
+            <span class="onyx-groupbox-legend">نقطة بداية النشاط ورأس المال المحسوب آلياً (الأصول - الخصوم)</span>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+              <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:3px;">
+                <div style="color:#64748b; font-size:11px; font-weight:700;">إجمالي الأصول الافتتاحية (مدين)</div>
+                <div style="font-size:16px; font-weight:900; color:#0f2b5c; margin-top:4px;" class="num-cell">0.00 ر.ي
+                </div>
+                <div style="font-size:10px; color:#15803d; margin-top:2px;">✔ تشمل الصناديق والبنوك والأصول الثابتة
+                </div>
+              </div>
+
+              <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:3px;">
+                <div style="color:#64748b; font-size:11px; font-weight:700;">إجمالي الخصوم والالتزامات (دائن)</div>
+                <div style="font-size:16px; font-weight:900; color:#b91c1c; margin-top:4px;" class="num-cell">0.00 ر.ي
+                </div>
+                <div style="font-size:10px; color:#475569; margin-top:2px;">مستحقات الموردين والشركات بالأجل</div>
+              </div>
+
+              <div style="background:#eff6ff; border:1px solid #93c5fd; padding:10px; border-radius:3px;">
+                <div style="color:#1e40af; font-size:11px; font-weight:800;">رأس المال المدفوع المعتمد (صافي)</div>
+                <div style="font-size:18px; font-weight:900; color:#1e40af; margin-top:4px;" class="num-cell">0.00 ر.ي
+                </div>
+                <div style="font-size:10px; color:#15803d; font-weight:700; margin-top:2px;">✔ متطابق مع معادلة أونكس (ص
+                  14)</div>
+              </div>
+
+              <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:3px;">
+                <div style="color:#64748b; font-size:11px; font-weight:700;">السيولة بالصناديق (محلي ومعادل)</div>
+                <div style="font-size:16px; font-weight:900; color:#0369a1; margin-top:4px;" class="num-cell">0.00 ر.ي
+                </div>
+                <div style="font-size:10px; color:#475569; margin-top:2px;">صنعاء + عدن (ريال، دولار، يورو)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- آخر العمليات المحاسبية المسجلة -->
+          <div class="onyx-groupbox">
+            <span class="onyx-groupbox-legend">سجل القيود اليومية المسجلة وحالة الترحيل</span>
+            <div class="onyx-grid-container">
+              <table class="onyx-grid">
+                <thead>
+                  <tr>
+                    <th>رقم القيد</th>
+                    <th>التاريخ</th>
+                    <th>البيان المحاسبي</th>
+                    <th>الفرع</th>
+                    <th>إجمالي المبلغ</th>
+                    <th>حالة الوثيقة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="6" style="text-align:center; padding:30px 15px; color:#64748b;">
+                      <div style="font-size:14px; font-weight:700; color:#334155; margin-bottom:4px;">✨ قاعدة البيانات
+                        نظيفة وخالية من أي قيود تجريبية</div>
+                      <div style="font-size:11.5px; color:#64748b;">النظام جاهز لبدء النشاط الفعلي — اضغط على زر
+                        <strong>إضافة [F6]</strong> لتسجيل أول قيد محاسبي أو سند صرف/قبض</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 5. Onyx Persistent Statusbar (شريط الحالة السفلي الدائم) -->
+    <footer class="onyx-statusbar">
+      <div class="onyx-statusbar-left">
+        <span>قاعدة البيانات: <strong>IAS_ONYX_2026</strong></span>
+        <span class="status-segment">الخادم: <strong>YemenSoft Local Engine</strong></span>
+        <span class="status-segment">الفترة المحاسبية: <strong style="color:#15803d;">يناير 2026
+            (مفتوحة)</strong></span>
+      </div>
+      <div class="onyx-statusbar-right">
+        <span>سعر الصرف المعتمد: <strong>$ = 535 YER | € = 950 YER</strong></span>
+        <span class="status-segment" style="color:#15803d;">● النظام متصل وجاهز للعمل</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- 2. حاوية واجهات الفروع ونظام المعارض (Al-Ameen Desktop Branch ERP) -->
+  <div id="branch-hub-container" class="alameen-desktop-container" style="display: none;">
+
+    <!-- 1. شريط القوائم العلوي (Al-Ameen Menubar) -->
+    <header class="alameen-menubar">
+      <div class="alameen-menu-links">
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('file')">ملف</span>
+        <div class="alameen-menu-dropdown-wrapper">
+          <span class="alameen-menu-btn active" id="btn-alameen-invoice-menu" onclick="window.onyxApp.toggleInvoiceDropdown(event)">فاتورة ▾</span>
+          <div class="alameen-dropdown-menu" id="alameen-invoice-dropdown" style="display: none;">
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_credit_purchases')">
+              <span>🛒</span> <span>مشتريات آجل</span>
+            </div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_mobile_sales')">
+              <span>📱</span> <span>مبيعات جوالات</span>
+            </div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_credit_sales')">
+              <span>📑</span> <span>مبيعات آجل</span>
+            </div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_accessories_sales')">
+              <span>🎧</span> <span>مبيعات اكسسوارات</span>
+            </div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_modem_invoice')">
+              <span>📶</span> <span>فاتورة مودم</span>
+            </div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_quotation')">
+              <span>🏷️</span> <span>عرض سعر</span>
+            </div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_serial_print')">
+              <span>🖨️</span> <span>امر طباعة رقم تسلسلي</span>
+            </div>
+            <div class="al-dropdown-divider"></div>
+            <div class="al-dropdown-item" onclick="window.onyxApp.bringMenuWindowToFront()">
+              <span>🗗</span> <span>إظهار قائمة الأنماط (فواتير 1)</span>
+            </div>
+          </div>
+        </div>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('vouchers')">سندات</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('customers')">زبائن</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('items')">مواد</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('accounts')">حسابات</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('cost_centers')">مراكز</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('window')">إطار</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('tools')">أدوات</span>
+        <span class="alameen-menu-btn" onclick="window.onyxApp.branchMenuAction('help')">تعليمات</span>
+      </div>
+      <div class="alameen-menu-system-actions">
+        <button type="button" class="alameen-top-btn" onclick="window.onyxApp.returnToEnterprise()" title="العودة لواجهة المركز الرئيسي الشاملة">
+          🏢 العودة للمركز الرئيسي
+        </button>
+        <button type="button" class="alameen-top-btn" onclick="window.onyxApp.showLoginModal()" title="تسجيل الدخول / تبديل المستخدم">
+          🔑 تسجيل الدخول
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. شريط الأدوات الأيقوني الكلاسيكي (Al-Ameen Toolbar with Colorful Icons) -->
+    <div class="alameen-toolbar">
+      <div class="alameen-toolbar-icons">
+        <button class="al-icon-btn" title="خروج / تبديل" onclick="window.onyxApp.returnToEnterprise()"><span class="al-ico al-ico-exit">🚪</span></button>
+        <button class="al-icon-btn" title="آلة حاسبة" onclick="window.onyxApp.openCalculator()"><span class="al-ico al-ico-calc">🖩</span></button>
+        <button class="al-icon-btn" title="مزامنة وتحديث" onclick="window.onyxApp.syncBranchData()"><span class="al-ico al-ico-sync">🔄</span></button>
+        <button class="al-icon-btn" title="الأمان والصلاحيات" onclick="window.onyxApp.showLoginModal()"><span class="al-ico al-ico-shield">🛡️</span></button>
+        <button class="al-icon-btn" title="مستخدم الفرع"><span class="al-ico al-ico-user">👤</span></button>
+        <button class="al-icon-btn" title="صندوق الكاشير" onclick="window.onyxApp.openBranchCashDrawer()"><span class="al-ico al-ico-pos">💳</span></button>
+        <button class="al-icon-btn" title="نسخ احتياطي"><span class="al-ico al-ico-backup">💾</span></button>
+        <button class="al-icon-btn" title="تنزيل واستيراد"><span class="al-ico al-ico-download">📥</span></button>
+        <button class="al-icon-btn" title="تحميل وتصدير"><span class="al-ico al-ico-upload">📤</span></button>
+        <button class="al-icon-btn" title="إحصائيات المبيعات"><span class="al-ico al-ico-pie">📊</span></button>
+        <button class="al-icon-btn" title="سند قيد يومي"><span class="al-ico al-ico-doc">📄</span></button>
+        <button class="al-icon-btn" title="رسائل وإشعارات"><span class="al-ico al-ico-mail">✉️</span></button>
+        <button class="al-icon-btn" title="وقت ووردية"><span class="al-ico al-ico-clock">⏱️</span></button>
+        <button class="al-icon-btn" title="بطاقة زبون"><span class="al-ico al-ico-customer">👥</span></button>
+        <button class="al-icon-btn" title="حركة مادة"><span class="al-ico al-ico-item">📦</span></button>
+        <button class="al-icon-btn" title="شجرة الحسابات"><span class="al-ico al-ico-tree">🌳</span></button>
+        <button class="al-icon-btn" title="دفتر الأستاذ"><span class="al-ico al-ico-ledger">📚</span></button>
+        <button class="al-icon-btn" title="سند صرف"><span class="al-ico al-ico-cashout">💵</span></button>
+        <button class="al-icon-btn" title="كشف حساب"><span class="al-ico al-ico-statement">📑</span></button>
+        <button class="al-icon-btn" title="تدقيق وترحيل"><span class="al-ico al-ico-audit">✔️</span></button>
+        <button class="al-icon-btn" title="شاشة المراقبة"><span class="al-ico al-ico-screen">🖥️</span></button>
+      </div>
+
+      <div class="alameen-toolbar-right">
+        <!-- منتقي الموقع -->
+        <div class="alameen-location-picker">
+          <span style="font-size:13px; color:#0284c7;">🔁</span>
+          <span style="font-size:12px; font-weight:bold; color:#0f2b5c;">الموقع</span>
+          <select id="alameen-location-select" onchange="window.onyxApp.onBranchLocationChange(this.value)">
+            <option value="1">1 - صالة المبيعات الرئيسية (صنعاء)</option>
+            <option value="2">2 - مستودع المبيعات المركزي</option>
+            <option value="3">3 - فرع عدن - التوزيع والموانئ</option>
+          </select>
+        </div>
+
+        <!-- شعار الفروع المطور -->
+        <div class="alameen-logo-badge" title="نظام الفروع والمعارض | Al-ParatY Branch Interface">
+          <span class="alameen-logo-text">alparaty</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. منطقة العمل المركزية (Main Workspace Body) -->
+    <div class="alameen-body-wrapper" id="alameenBodyWrapper">
+
+      <!-- شريط مهام النوافذ المفتوحة الكلاسيكي (MDI Window Bar) يمتد على كامل عرض الشاشة -->
+      <div class="alameen-mdi-taskbar" id="alameenMdiTaskbar">
+        <button type="button" class="al-mdi-tab active" id="tab-alameen-menu" onclick="window.onyxApp.bringMenuWindowToFront()" title="قائمة أنماط الفواتير">
+          <span>🗗</span>
+          <span>فواتير 1</span>
+        </button>
+        <div id="alameenOpenWindowsTabs" style="display:flex; gap:3px;"></div>
+      </div>
+
+      <!-- مسرح سطح المكتب الكامل (Desktop Stage) يمتد على كامل العرض والارتفاع المتاح -->
+      <div class="alameen-desktop-stage" id="alameenDesktopStage">
+
+        <!-- اللوحة الجانبية اليسرى (Left Sidebar: التقويم، الدعم الفني، الترخيص) -->
+        <aside class="alameen-left-sidebar" id="alameenLeftSidebar">
+
+          <!-- بطاقة التقويم الأنيقة البنفسجية المطابقة تماماً للصورة -->
+          <div class="alameen-calendar-widget">
+            <div class="alameen-cal-day-header" id="alameen-cal-day-name">الخميس</div>
+            <div class="alameen-cal-date-body">
+              <div class="alameen-cal-gregorian">
+                <span class="alameen-cal-month" id="alameen-cal-month-name">أكتوبر</span>
+                <span class="alameen-cal-day-num" id="alameen-cal-day-number">1</span>
+                <span class="alameen-cal-year" id="alameen-cal-year-number">2026</span>
+              </div>
+              <div class="alameen-cal-hijri">
+                <div class="alameen-cal-hijri-month" id="alameen-cal-hijri-text">ربيع الثاني</div>
+                <div class="alameen-cal-hijri-day" id="alameen-cal-hijri-day">20</div>
+                <div class="alameen-cal-hijri-year" id="alameen-cal-hijri-year">1448</div>
+              </div>
+            </div>
+            <div class="alameen-cal-time-footer">
+              <span class="alameen-cal-time-val" id="alameen-cal-live-clock">11:16</span>
+              <span class="alameen-cal-time-period" id="alameen-cal-time-ampm">ص</span>
+            </div>
+          </div>
+
+          <!-- بطاقة مركز الدعم الفني -->
+          <div class="alameen-support-card">
+            <div class="alameen-support-title">مركز الدعم الفني</div>
+            <p class="alameen-support-desc">
+              إذا كانت لديك مشاكل أو استفسارات حول هذا البرنامج أو أي من خدمات الشركة، يرجى زيارة مركز الدعم الفني على الإنترنت، وتقديم طلب بهذا الخصوص.
+            </p>
+          </div>
+
+          <!-- بطاقة ترخيص النسخة -->
+          <div class="alameen-license-card">
+            <div class="alameen-license-label">هذه النسخة مرخصة باسم:</div>
+            <div class="alameen-license-name" id="alameen-licensee-display">شركة البرطي المالية</div>
+          </div>
+
+        </aside>
+
+        <!-- مساحة سطح المكتب وسط الشاشة (MDI Desktop Workspace) -->
+        <main class="alameen-desktop-workspace" id="alameenDesktopWorkspace">
+
+          <!-- نافذة "فواتير 1" الافتراضية لسطح المكتب (القائمة السريعة للأنماط) -->
+          <div class="alameen-window alameen-menu-window active-window" id="alameenMenuWindow">
+            <div class="alameen-window-titlebar" id="alameenMenuTitlebar">
+              <div class="alameen-window-title-text">
+                <span style="font-size:12px;">🗗</span>
+                <span>فواتير 1</span>
+              </div>
+              <div class="alameen-window-controls">
+                <button class="al-w-btn" title="خيارات" onclick="window.onyxApp.toggleMenuWindowView()">⚙️</button>
+                <button class="al-w-btn" title="تحديث" onclick="window.onyxApp.refreshMenuWindow()">🔄</button>
+                <button class="al-w-btn" title="ترتيب أيقونات">▦</button>
+                <button class="al-w-btn" title="قائمة">☰</button>
+                <button class="al-w-btn" title="تصغير" onclick="window.onyxApp.minimizeMenuWindow()">🗕</button>
+                <button class="al-w-btn" title="تكبير" onclick="window.onyxApp.maximizeMenuWindow()">🗖</button>
+                <button class="al-w-btn al-w-close" title="إغلاق" onclick="window.onyxApp.closeMenuWindow()">✕</button>
+              </div>
+            </div>
+
+            <div class="alameen-window-content">
+              <!-- قائمة أنماط الفواتير السريعة السبعة المطابقة للصورة 111622 (تحدث ديناميكياً) -->
+              <div class="alameen-invoice-links-list" id="alameen-invoice-links-list">
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_credit_purchases')" title="فتح نافذة مشتريات آجل">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">🛒</span> مشتريات آجل</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_mobile_sales')" title="فتح نافذة مبيعات جوالات">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">📱</span> مبيعات جوالات</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_credit_sales')" title="فتح نافذة مبيعات آجل">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">📑</span> مبيعات آجل</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_accessories_sales')" title="فتح نافذة مبيعات اكسسوارات">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">🎧</span> مبيعات اكسسوارات</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_modem_invoice')" title="فتح نافذة فاتورة مودم">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">📶</span> فاتورة مودم</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_quotation')" title="فتح نافذة عرض سعر">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">🏷️</span> عرض سعر</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+                <div class="alameen-inv-link-item" onclick="window.onyxApp.openBranchInvoiceWindow('prof_serial_print')" title="فتح نافذة أمر طباعة رقم تسلسلي">
+                  <span class="al-inv-link-text"><span class="al-inv-item-icon">🖨️</span> أمر طباعة رقم تسلسلي</span>
+                  <span class="al-inv-link-arrow">‹</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+
+        <!-- اللوحة الجانبية اليمنى (Right Sidebar: تحذيرات) المطابقة للقطة 111622 -->
+        <aside class="alameen-right-sidebar" id="alameenRightSidebar">
+          <div class="alameen-warnings-tab">
+            <div class="alameen-warnings-tab-header">
+              <button class="al-pin-btn" title="تثبيت اللوحة">📌</button>
+              <button class="al-pin-btn" title="تبديل">⇄</button>
+              <span class="alameen-warnings-tab-title">تحذيرات</span>
+            </div>
+            <div class="alameen-warnings-content" id="alameenWarningsContent">
+              <div class="al-warning-item">
+                <span class="al-warn-icon">ℹ️</span>
+                <div class="al-warn-text">النظام متصل بقاعدة البيانات المحلية للفرع</div>
+              </div>
+              <div class="al-warning-item">
+                <span class="al-warn-icon">🟢</span>
+                <div class="al-warn-text">وردية المبيعات مفتوحة وجاهزة لإصدار الفواتير</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- نافذة الفاتورة الشاملة: تفتح افتراضياً مكبرة بالكامل (Maximized) بنسبة 100% مثل برامج ERP ونوافذ الويندوز -->
+        <div class="alameen-window alameen-invoice-window is-maximized" id="alameenInvoiceWindow" style="display: none;">
+          <div class="alameen-window-titlebar" id="alameenInvoiceTitlebar">
+            <div class="alameen-window-title-text" id="alameen-inv-window-title">
+              <span id="al-inv-window-icon" style="font-size:13px;">🛒</span>
+              <span id="al-inv-window-name" style="font-weight:bold;">مشتريات آجل</span>
+              <span id="al-inv-window-branch-tag" style="font-size:10px; opacity:0.85; margin-right:8px;">[فرع عدن - شركة البرطي المالية]</span>
+            </div>
+            <div class="alameen-window-controls">
+              <button class="al-w-btn" id="btn-minimize-invoice-window" title="تصغير النافذة إلى شريط المهام" onclick="window.onyxApp.minimizeInvoiceWindow()">🗕</button>
+              <button class="al-w-btn" id="btn-maximize-invoice-window" title="استعادة حجم النافذة [Restore]" onclick="window.onyxApp.toggleMaximizeInvoiceWindow()">🗗</button>
+              <button class="al-w-btn al-w-close" id="btn-close-invoice-window" title="إغلاق والعودة لسطح المكتب" onclick="window.onyxApp.closeBranchInvoiceWindow()">✕</button>
+            </div>
+          </div>
+
+          <!-- الحاوية الديناميكية لمحتوى الفاتورة -->
+          <div class="alameen-window-content alameen-invoice-body-scroll" id="alameenInvoiceContentArea">
+            <!-- يتم توليد شبكة الفاتورة والحقول والجداول بواسطة دالة renderAlameenInvoiceView -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 4. شريط الحالة السفلي (Al-Ameen Statusbar) المطابق للصورة 111622 -->
+    <footer class="alameen-statusbar">
+      <div class="alameen-status-left">
+        <span class="al-status-kbd">SCRL</span>
+        <span class="al-status-kbd active">NUM</span>
+        <span class="al-status-kbd">CAP</span>
+      </div>
+
+      <div class="alameen-status-right">
+        <div class="alameen-status-info">
+          <span class="al-stat-segment">ALPARATY-BRANCH</span>
+          <span class="al-stat-sep">|</span>
+          <span class="al-stat-segment">ParatYDb2026</span>
+          <span class="al-stat-sep">|</span>
+          <span class="al-stat-segment" id="alameen-status-profile-name">2:مبيعات</span>
+          <span class="al-stat-sep">|</span>
+          <span class="al-stat-segment">SecExt</span>
+          <span class="al-stat-sep">:</span>
+          <span class="al-stat-segment">Branches</span>
+        </div>
+        <div class="alameen-status-nav-icons">
+          <span class="al-nav-ico" title="مفضلة">⭐</span>
+          <span class="al-nav-ico" title="قائمة النوافذ">🗔</span>
+          <span class="al-nav-ico" title="الرئيسية">🏠</span>
+          <span class="al-nav-ico" title="أمام">◀</span>
+          <span class="al-nav-ico" title="خلف">▶</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- 3. قائمة الزر الأيمن العامة لجدول الأصناف (Context Menu Dropdown) -->
+  <div id="gridContextMenu" class="onyx-context-menu" style="display: none;"></div>
+
+  <!-- 4. واجهة تسجيل الدخول المتطورة الشاملة (Onyx Pro Enterprise Login) -->
+  <div id="onyx-login-overlay" class="onyx-login-overlay" style="display: flex;">
+    <div class="onyx-login-modal" id="onyxLoginModal">
+      
+      <!-- 1. شريط عنوان وشعار أونكس برو المتكامل -->
+      <div class="onyx-login-header">
+        <div class="onyx-login-brand">
+          <div class="onyx-login-brand-icon">🏢</div>
+          <div>
+            <div class="onyx-login-brand-title">البرطي المالي الشامل | Al-ParatY Financial Enterprise</div>
+            <div class="onyx-login-brand-sub">نظام أونكس برو المتكامل (Onyx Pro ERP 2026.1)</div>
+          </div>
+        </div>
+        <div class="onyx-login-status-chip" title="حالة الاتصال بالخادم المحلي وقاعدة بيانات SQLite">
+          <span class="onyx-login-pulse-dot"></span>
+          <span>الخادم متصل</span>
+        </div>
+      </div>
+
+      <!-- 2. بطاقات الدخول السريع (Quick Login Presets) -->
+      <div class="onyx-login-presets-bar">
+        <span class="onyx-login-presets-label">⚡ الدخول السريع:</span>
+        <button type="button" class="onyx-login-preset-chip active" id="chip-user-1" onclick="window.onyxApp.quickFillLogin('1', '01', '1')" title="تسجيل الدخول المباشر كمدير عام">
+          👑 1 - المدير العام (HQ)
+        </button>
+        <button type="button" class="onyx-login-preset-chip" id="chip-user-2" onclick="window.onyxApp.quickFillLogin('2', '01', '2')" title="تسجيل الدخول ككاشير صالة صنعاء">
+          🏪 2 - كاشير صنعاء (Retail)
+        </button>
+        <button type="button" class="onyx-login-preset-chip" id="chip-user-3" onclick="window.onyxApp.quickFillLogin('3', '02', '2')" title="تسجيل الدخول ككاشير فرع عدن">
+          🚚 3 - كاشير عدن (Retail)
+        </button>
+      </div>
+
+      <!-- 3. شبكة الحقول الرئيسية المطابقة تماماً لنموذج أونكس برو القياسي -->
+      <div class="onyx-login-body">
+        <form id="onyxLoginForm" onsubmit="window.onyxApp.handleLoginSubmit(event)">
+          <table class="onyx-login-form-table">
+            <tbody>
+              <!-- 1. السنة -->
+              <tr>
+                <td class="onyx-login-table-label">السنة</td>
+                <td class="onyx-login-table-control">
+                  <input type="number" id="login-year" class="onyx-login-input" value="2026" min="2020" max="2035" required autocomplete="off">
+                </td>
+              </tr>
+
+              <!-- 2. اللغة -->
+              <tr>
+                <td class="onyx-login-table-label">اللغة</td>
+                <td class="onyx-login-table-control">
+                  <select id="login-lang" class="onyx-login-select">
+                    <option value="ar" selected>1 - عربي</option>
+                    <option value="en">2 - English</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- 3. الوحدة المحاسبية -->
+              <tr>
+                <td class="onyx-login-table-label">الوحدة المحاسبية</td>
+                <td class="onyx-login-table-control">
+                  <select id="login-acc-unit" class="onyx-login-select">
+                    <option value="1" selected>1 - المركز الرئيسي / الإدارة العامة (صنعاء)</option>
+                    <option value="2">2 - قطاع المبيعات والتسويق ومعارض التجزئة</option>
+                    <option value="3">3 - قطاع الاستثمار والمشاريع وتطوير الأعمال</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- 4. المستخدم -->
+              <tr>
+                <td class="onyx-login-table-label">المستخدم</td>
+                <td class="onyx-login-table-control">
+                  <div style="display:flex; gap:6px;">
+                    <input type="text" id="login-user-code" class="onyx-login-input" value="1" style="width:65px; text-align:center; font-weight:bold;" oninput="window.onyxApp.onLoginUserCodeInput(this.value)" autocomplete="username" required>
+                    <select id="login-user-select" class="onyx-login-select" style="flex:1;" onchange="window.onyxApp.onLoginUserSelect(this.value)">
+                      <option value="1" selected>1 - المدير المالي (خالد رضوان)</option>
+                      <option value="2">2 - مروان صالح القدسي (كاشير الفرع)</option>
+                      <option value="3">3 - صالح محمد العولقي (فرع عدن)</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 5. كلمة السر -->
+              <tr>
+                <td class="onyx-login-table-label">كلمة السر</td>
+                <td class="onyx-login-table-control">
+                  <div class="onyx-login-password-wrap">
+                    <input type="password" id="login-password" class="onyx-login-input" value="1" style="padding-left:30px;" autocomplete="current-password" required onkeyup="window.onyxApp.checkCapsLock(event)">
+                    <button type="button" class="onyx-login-toggle-pass" onclick="window.onyxApp.togglePasswordVisibility()" title="إظهار / إخفاء كلمة السر">👁️</button>
+                    <div id="login-caps-alert" class="onyx-login-caps-alert">⚠ تنبيه: مفتاح Caps Lock مفعل</div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 6. رقم الفرع -->
+              <tr>
+                <td class="onyx-login-table-label">رقم الفرع</td>
+                <td class="onyx-login-table-control">
+                  <select id="login-branch" class="onyx-login-select">
+                    <option value="01" selected>1 - فرع صنعاء _ المركز الرئيسي</option>
+                    <option value="02">2 - فرع عدن _ التوزيع والموانئ</option>
+                    <option value="03">3 - فرع المكلا _ المستودعات الساحلية</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- 7. الشركة -->
+              <tr>
+                <td class="onyx-login-table-label">الشركة</td>
+                <td class="onyx-login-table-control">
+                  <select id="login-company" class="onyx-login-select">
+                    <option value="1" selected>1 - شركة البرطي التجارية والاستثمارية</option>
+                    <option value="2">2 - مركز نوبل للاستشارات وأنظمة المعلومات</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- 8. النظام -->
+              <tr>
+                <td class="onyx-login-table-label">النظام</td>
+                <td class="onyx-login-table-control">
+                  <select id="login-system-module" class="onyx-login-select">
+                    <option value="1" selected>1 - نظام الأستاذ العام والحسابات المالية (HQ Enterprise Classic)</option>
+                    <option value="2">2 - نظام إدارة المعارض والمبيعات ونقاط البيع (Branch Retail Hub)</option>
+                    <option value="3">3 - نظام إدارة المخازن والمستودعات والتوريدات</option>
+                    <option value="4">4 - نظام إدارة المشتريات والاعتمادات المستندية</option>
+                    <option value="5">5 - نظام الموارد البشرية والرواتب والأجور</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+
+      <!-- 4. شريط الأزرار (<<< - خروج - موافق) -->
+      <div class="onyx-login-footer">
+        <button type="button" id="btnLoginDrawer" class="onyx-login-btn-drawer" onclick="window.onyxApp.toggleLoginDrawer()" title="إعدادات الاتصال وبيئة العمل المتقدمة">&lt;&lt;&lt;</button>
+        <div class="onyx-login-buttons-main">
+          <button type="button" class="onyx-login-btn onyx-login-btn-exit" onclick="window.onyxApp.closeLoginModal()">خروج [Esc]</button>
+          <button type="button" class="onyx-login-btn onyx-login-btn-ok" onclick="window.onyxApp.handleLoginSubmit(event)">موافق [Enter]</button>
+        </div>
+      </div>
+
+      <!-- 5. درج الإعدادات المتقدمة (<<<) -->
+      <div id="onyxLoginDrawer" class="onyx-login-drawer">
+        <div class="onyx-login-drawer-grid">
+          <div class="onyx-login-drawer-item">
+            <label>عنوان خادم النظام المحلي (Host)</label>
+            <span>http://127.0.0.1:8999</span>
+          </div>
+          <div class="onyx-login-drawer-item">
+            <label>قاعدة البيانات المحلية</label>
+            <span>SQLite 3 (alparaty_erp.db)</span>
+          </div>
+          <div class="onyx-login-drawer-item">
+            <label>النسخ الاحتياطي التلقائي</label>
+            <span style="color:#4ade80;">✔ مفعّل وتلقائي على القرص</span>
+          </div>
+          <div class="onyx-login-drawer-item" style="flex-direction:row; align-items:center; gap:6px; margin-top:4px;">
+            <input type="checkbox" id="login-remember-me" checked style="accent-color:#0284c7; cursor:pointer;">
+            <label for="login-remember-me" style="color:#e2e8f0; cursor:pointer; font-size:11px;">تذكر بيانات الجلسة على هذا الحاسوب</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- حاوية النوافذ المنبثقة وحوارات F9 -->
+  <div class="onyx-modal-backdrop" id="onyx-modal-area"></div>
+
+  <!-- حاوية التنبيهات الفورية -->
+  <div class="onyx-toast-area" id="onyx-toast-area"></div>
+
+  <!-- ملفات منطق وبيانات أونكس برو -->
+  <script src="js/onyx_data.js?v=20261011_v11"></script>
+  <script src="js/onyx_store.js?v=20261011_v11"></script>
+  <script src="js/onyx_app.js?v=20261011_v11"></script>
+
+</body>
+
+</html>

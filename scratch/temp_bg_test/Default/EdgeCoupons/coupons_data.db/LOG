@@ -1,0 +1,5 @@
+2026/10/12-00:09:25.246 3060 Creating DB C:\Users\AlparatY\Desktop\system ERP\scratch\temp_bg_test\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/10/12-00:09:25.279 3060 Reusing MANIFEST C:\Users\AlparatY\Desktop\system ERP\scratch\temp_bg_test\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/12-00:09:26.113 3ed8 Level-0 table #5: started
+2026/10/12-00:09:26.142 3ed8 Level-0 table #5: 683273 bytes OK
+2026/10/12-00:09:26.146 3ed8 Delete type=0 #3

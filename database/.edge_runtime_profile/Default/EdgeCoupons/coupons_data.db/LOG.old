@@ -1,0 +1,6 @@
+2026/10/24-16:53:35.568 2b0c Reusing MANIFEST C:\Users\AlparatY\Desktop\system ERP\database\.edge_runtime_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/24-16:53:35.699 2b0c Recovering log #117
+2026/10/24-16:53:35.699 2b0c Reusing old log C:\Users\AlparatY\Desktop\system ERP\database\.edge_runtime_profile\Default\EdgeCoupons/coupons_data.db/000117.log 
+2026/10/24-16:53:36.542 2d44 Level-0 table #121: started
+2026/10/24-16:53:36.549 2d44 Level-0 table #121: 683376 bytes OK
+2026/10/24-16:53:36.552 2d44 Delete type=0 #117

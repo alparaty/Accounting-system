@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Functional Accounting Cycles Test Suite</title>
+</head>
+<body>
+  <div id="onyx-screen-title"></div>
+  <div id="onyx-screen-sub"></div>
+  <div id="tree-pending-count"></div>
+  <div id="onyx-toast-area"></div>
+  <div id="onyx-workspace"></div>
+  <div id="onyx-modal-area"></div>
+  <div id="test-results" style="white-space:pre; font-family:monospace;"></div>
+
+  <script src="../js/onyx_data.js"></script>
+  <script src="../js/onyx_store.js"></script>
+  <script src="../js/onyx_app.js"></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const results = {};
+      const store = window.onyxStore;
+
+      // 1. Inventory Item Addition Test
+      try {
+        const initialCount = store.state.items.length;
+        window.onyxApp.openScreen('inventory');
+        window.onyxApp.openAddItemModal();
+        document.getElementById('item-new-code').value = 'TEST-ITM-99';
+        document.getElementById('item-new-name').value = 'شاشة سامسونج تجريبية 27 بوصة';
+        document.getElementById('item-new-cost').value = '50000';
+        document.getElementById('item-new-sale').value = '75000';
+        document.getElementById('item-new-wh01').value = '20';
+        document.getElementById('item-new-wh02').value = '10';
+        window.onyxApp.submitAddItem();
+        const afterItem = store.state.items.find(i => i.code === 'TEST-ITM-99');
+        results.inventoryAdd = {
+          success: !!afterItem && afterItem.currentStock === 30,
+          item: afterItem ? afterItem.name : null,
+          stock: afterItem ? afterItem.currentStock : null
+        };
+      } catch(e) {
+        results.inventoryAdd = { success: false, error: e.message };
+      }
+
+      // 2. Stock Transfer Test
+      try {
+        window.onyxApp.openStockTransferModal();
+        document.getElementById('xfer-item-select').value = 'TEST-ITM-99';
+        document.getElementById('xfer-from-wh').value = 'WH01';
+        document.getElementById('xfer-to-wh').value = 'WH02';
+        document.getElementById('xfer-qty').value = '5';
+        window.onyxApp.submitStockTransfer();
+        const itm = store.state.items.find(i => i.code === 'TEST-ITM-99');
+        results.stockTransfer = {
+          success: itm.whStock.WH01 === 15 && itm.whStock.WH02 === 15,
+          wh01: itm.whStock.WH01,
+          wh02: itm.whStock.WH02
+        };
+      } catch(e) {
+        results.stockTransfer = { success: false, error: e.message };
+      }
+
+      // 3. Stock Reconciliation Test
+      try {
+        window.onyxApp.openStockReconciliationModal();
+        document.getElementById('rec-item-select').value = 'TEST-ITM-99';
+        document.getElementById('rec-wh-select').value = 'WH01';
+        document.getElementById('rec-actual-qty').value = '14'; // 1 unit deficit
+        window.onyxApp.submitStockReconciliation();
+        const itm = store.state.items.find(i => i.code === 'TEST-ITM-99');
+        results.stockReconciliation = {
+          success: itm.whStock.WH01 === 14 && itm.currentStock === 29,
+          actualWH01: itm.whStock.WH01,
+          totalStock: itm.currentStock
+        };
+      } catch(e) {
+        results.stockReconciliation = { success: false, error: e.message };
+      }
+
+      // 4. Sales Invoice Review & Universal Posting Test
+      try {
+        const inv = store.addSalesInvoice({
+          customerCode: '1141010001',
+          repCode: 'REP-01',
+          items: [{ code: 'TEST-ITM-99', name: 'شاشة سامسونج', qty: 2, price: 75000 }],
+          discount: 5000,
+          date: '2024-05-15',
+          paymentType: 'CREDIT'
+        });
+        
+        // Review Invoice
+        store.reviewDocument('SALES_INVOICE', inv.id);
+        const wasReviewed = store.state.salesInvoices.find(s => s.id === inv.id)?.status === 'REVIEWED';
+
+        // Universal Posting
+        const postRes = store.postDocument('SALES_INVOICE', inv.id);
+        const postedInv = store.state.salesInvoices.find(s => s.id === inv.id);
+        
+        // Check generated Journal Entry
+        const genJournal = store.state.journalEntries.find(j => j.desc && j.desc.includes(inv.id));
+        const jDeb = genJournal ? (genJournal.totalDebit || genJournal.lines.reduce((s,l)=>s+l.debit,0)) : 0;
+        const jCred = genJournal ? (genJournal.totalCredit || genJournal.lines.reduce((s,l)=>s+l.credit,0)) : 0;
+
+        results.salesPostingCycle = {
+          success: postedInv && postedInv.status === 'POSTED' && !!genJournal,
+          reviewed: wasReviewed,
+          posted: postedInv.status === 'POSTED',
+          journalId: genJournal ? genJournal.id : null,
+          journalBalanced: genJournal ? Math.abs(jDeb - jCred) < 0.01 : false
+        };
+      } catch(e) {
+        results.salesPostingCycle = { success: false, error: e.message };
+      }
+
+      // 5. Financial Reports & Trial Balance Balancing Test
+      try {
+        const trial = store.generateTrialBalance();
+        const sumDebit = trial.reduce((s, r) => s + r.netDebit, 0);
+        const sumCredit = trial.reduce((s, r) => s + r.netCredit, 0);
+        const diff = Math.abs(sumDebit - sumCredit);
+        const bs = store.generateBalanceSheet();
+        const is = store.generateIncomeStatement();
+
+        results.financialReports = {
+          trialBalanced: diff < 1.0,
+          trialDiff: diff,
+          balanceSheetBalanced: bs.isBalanced,
+          netProfit: is.netProfit,
+          totalRevenues: is.totalRevenues,
+          totalExpenses: is.totalExpenses
+        };
+      } catch(e) {
+        results.financialReports = { success: false, error: e.message };
+      }
+
+      // 6. Year-End Closing Engine Test
+      try {
+        const closeEntry = store.closeFinancialYear();
+        const isAfter = store.generateIncomeStatement();
+        results.yearEndClosing = {
+          success: !!closeEntry && closeEntry.status === 'POSTED',
+          closeEntryId: closeEntry ? closeEntry.id : null,
+          postCloseNetIncome: isAfter.netProfit
+        };
+      } catch(e) {
+        results.yearEndClosing = { success: false, error: e.message };
+      }
+
+      document.getElementById('test-results').textContent = "---JSON_RESULTS_START---\n" + JSON.stringify(results, null, 2) + "\n---JSON_RESULTS_END---";
+    });
+  </script>
+</body>
+</html>

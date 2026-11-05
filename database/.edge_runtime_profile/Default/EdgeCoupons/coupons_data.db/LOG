@@ -1,0 +1,15 @@
+2026/10/30-18:53:07.037 2f2c Reusing MANIFEST C:\Users\AlparatY\Desktop\system ERP\database\.edge_runtime_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/30-18:53:07.055 2f2c Recovering log #120
+2026/10/30-18:53:07.058 2f2c Reusing old log C:\Users\AlparatY\Desktop\system ERP\database\.edge_runtime_profile\Default\EdgeCoupons/coupons_data.db/000120.log 
+2026/10/30-18:53:29.868 3a24 Level-0 table #124: started
+2026/10/30-18:53:29.876 3a24 Level-0 table #124: 683376 bytes OK
+2026/10/30-18:53:29.881 3a24 Delete type=0 #120
+2026/10/30-18:53:29.881 21b0 Compacting 4@0 + 1@1 files
+2026/10/30-18:53:29.903 21b0 Generated table #125@0: 3 keys, 683376 bytes
+2026/10/30-18:53:29.903 21b0 Compacted 4@0 + 1@1 files => 683376 bytes
+2026/10/30-18:53:29.907 21b0 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/10/30-18:53:29.907 21b0 Delete type=2 #112
+2026/10/30-18:53:29.908 21b0 Delete type=2 #115
+2026/10/30-18:53:29.908 21b0 Delete type=2 #118
+2026/10/30-18:53:29.908 21b0 Delete type=2 #121
+2026/10/30-18:53:29.908 21b0 Delete type=2 #124
